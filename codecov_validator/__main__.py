@@ -1,3 +1,3 @@
-from ccv import run_request
+from . import ccv
 
-run_request()
+ccv.run_request()
