@@ -1,4 +1,4 @@
--   id: codecov_validator
+-   id: ccv
     name: codecov validator
     description: This hook validates your codecov.yml file
     entry: ccv
