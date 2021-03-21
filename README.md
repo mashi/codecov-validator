@@ -4,10 +4,23 @@
 
 
 # Description
-Validates the codecov.yml configuration file.
+Validates the `codecov.yml` configuration file.
 
-This code is simply the curl command described in the (codecov documentation)[https://docs.codecov.io/docs/codecov-yaml]
-converted in python.
+This code is simply the `curl` command described in the [codecov documentation](https://docs.codecov.io/docs/codecov-yaml)
+converted to python.
+
+
+## Usage
+The recommended use is to add in the `.pre-commit-config.yaml` file
+```
+- repo: https://github.com/mashi/codecov-validator
+  rev: v0.0.1  # replace by any tag version available
+  hooks:
+    - id: ccv
+```
+
+In this way, the `codecov` file is checked before `commit` and prevents the user
+from including invalid files in the version control.
 
 
 ## Instructions (Development)
