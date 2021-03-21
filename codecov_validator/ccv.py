@@ -2,7 +2,8 @@ import requests
 
 
 def run_request():
-    file = open("codecov.yml", "rb").read()
+    with open("codecov.yml", "rb") as myconfig:
+        file = myconfig.read()
     received = requests.post("https://codecov.io/validate", data=file)
     message = received.content.decode("utf-8")
     if "Valid!" not in message:
