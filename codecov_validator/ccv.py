@@ -79,6 +79,7 @@ def run_request(file):
         rq.ConnectionError,
     ):
         print("Failed to establish connection. Check your internet.")
+        exit(1)
     message = received.content.decode("utf-8")
     return message
 
