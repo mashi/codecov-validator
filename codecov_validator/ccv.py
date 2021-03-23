@@ -1,15 +1,87 @@
-import requests
+import click
+import requests as rq
 
 
-def run_request():
-    with open("codecov.yml", "rb") as myconfig:
-        file = myconfig.read()
-    received = requests.post("https://codecov.io/validate", data=file)
-    message = received.content.decode("utf-8")
-    if "Valid!" not in message:
-        print(message)
+@click.command()
+@click.option(
+    "--filename", default="codecov.yml", help="Codecov configuration file."
+)
+def ccv(filename):
+    file = open_file(filename)
+    if not file:
         exit(1)
+    result = run_request(file)
+    flag = check_valid(result)
+    if flag:
+        print(result)
+    exit(flag)
+
+
+def check_valid(result):
+    """
+    Check if the message contains the "Valid!" string
+    from the request call.
+
+    Args:
+        result (str): message to be analyzed.
+
+    Returns:
+        int: The output is 1 to indicate an error so
+        exit(1) is called and indicates error in the pre-commit.
+        Returns 0 when "Valid!" is presented.
+    """
+    if "Valid!" not in result:
+        print(result)
+        flag = 1
+    else:
+        print("Valid!")
+        flag = 0
+    return flag
+
+
+def open_file(filename):
+    """
+    Tries to open the configuration file.
+
+    Args:
+        filename (str): name of the configuration file.
+
+    Returns:
+        str: contents of the configuration file, or
+            the string zero.
+    """
+    try:
+        with open(filename, "rb") as myconfig:
+            file = myconfig.read()
+        return file
+    except FileNotFoundError:
+        print("Configuration file not found.")
+        return "0"
+
+
+def run_request(file):
+    """
+    Send the configuration to the codecov site.
+
+    Args:
+        file (string): contents of the configuration file.
+
+    Returns:
+        str: Result of the request.
+    """
+    try:
+        received = rq.post("https://codecov.io/validate", data=file)
+    except (
+        rq.ConnectTimeout,
+        rq.HTTPError,
+        rq.ReadTimeout,
+        rq.Timeout,
+        rq.ConnectionError,
+    ):
+        print("Failed to establish connection. Check your internet.")
+    message = received.content.decode("utf-8")
+    return message
 
 
 if __name__ == "__main__":
-    run_request()
+    ccv()
