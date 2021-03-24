@@ -8,13 +8,15 @@ import requests as rq
 )
 def ccv(filename):
     file = open_file(filename)
-    if not file:
+    if file:
+        result = run_request(file)
+        flag = check_valid(result)
+        if flag:
+            print(result)
+            exit()
+        exit(flag)
+    else:
         exit(1)
-    result = run_request(file)
-    flag = check_valid(result)
-    if flag:
-        print(result)
-    exit(flag)
 
 
 def check_valid(result):
@@ -30,12 +32,12 @@ def check_valid(result):
         exit(1) is called and indicates error in the pre-commit.
         Returns 0 when "Valid!" is presented.
     """
-    if "Valid!" not in result:
-        print(result)
-        flag = 1
-    else:
+    if "Valid!" in result:
         print("Valid!")
         flag = 0
+    else:
+        print(result)
+        flag = 1
     return flag
 
 
@@ -47,7 +49,7 @@ def open_file(filename):
         filename (str): name of the configuration file.
 
     Returns:
-        str: contents of the configuration file, or
+        bytes: contents of the configuration file, or
             the string zero.
     """
     try:
