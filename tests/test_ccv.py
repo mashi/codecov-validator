@@ -11,6 +11,8 @@ bot: "codecov-io"
 """
 
 
+# Test valid example file from
+# [documentation](https://docs.codecov.io/docs/codecovyml-reference).
 valid_file = """
 codecov:
   token: "<some token here>"
@@ -31,22 +33,18 @@ class CcvTest(unittest.TestCase):
     def test_passing(self):
         self.assertEqual(1, 1)
 
-    def test_valid_file(self):
-        """
-        Test valid example file from
-        [documentation](https://docs.codecov.io/docs/codecovyml-reference).
-        """
+    def test_run_request_valid_file(self):
         received = ccv.run_request(valid_file)
         self.assertIn("Valid!", received)
 
-    def test_invalid_file(self):
+    def test_run_request_invalid_file(self):
         received = ccv.run_request(invalid_file)
         self.assertIn("Wrong key", received)
 
-    def test_open_file_wrong_filename(self):
-        wrong_filename = "wrong_codecov.yml"
+    def test_open_file_invalid_filename(self):
+        invalid_filename = "invalid_codecov.yml"
         with self.assertRaises(SystemExit) as cm:
-            received = ccv.open_file(wrong_filename)
+            ccv.open_file(invalid_filename)
         self.assertEqual(cm.exception.code, 1)
 
     def test_open_file_valid_filename(self):
