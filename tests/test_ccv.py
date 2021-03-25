@@ -4,17 +4,14 @@ from click.testing import CliRunner
 
 from codecov_validator import ccv
 
+invalid_file = """
+codecovs:
+token: "<some token here>"
+bot: "codecov-io"
+"""
 
-class CcvTest(unittest.TestCase):
-    def test_passing(self):
-        self.assertEqual(1, 1)
 
-    def test_valid_file(self):
-        """
-        Test valid example file from
-        [documentation](https://docs.codecov.io/docs/codecovyml-reference).
-        """
-        valid_file = """
+valid_file = """
 codecov:
   token: "<some token here>"
   bot: "codecov-io"
@@ -27,17 +24,23 @@ codecov:
   notify:
     after_n_builds: 2
     wait_for_ci: yes
+"""
+
+
+class CcvTest(unittest.TestCase):
+    def test_passing(self):
+        self.assertEqual(1, 1)
+
+    def test_valid_file(self):
+        """
+        Test valid example file from
+        [documentation](https://docs.codecov.io/docs/codecovyml-reference).
         """
         received = ccv.run_request(valid_file)
         self.assertIn("Valid!", received)
 
     def test_invalid_file(self):
-        valid_file = """
-codecovs:
-  token: "<some token here>"
-  bot: "codecov-io"
-        """
-        received = ccv.run_request(valid_file)
+        received = ccv.run_request(invalid_file)
         self.assertIn("Wrong key", received)
 
     def test_open_file_wrong_filename(self):
@@ -58,13 +61,6 @@ codecovs:
     def test_check_valid_invalid_input(self):
         invalid_input = "Invalid!"
         self.assertEqual(1, ccv.check_valid(invalid_input))
-
-    def test_ccv_valid(self):
-        self.assertRaises(SystemExit, ccv.ccv)
-        with self.assertRaises(SystemExit) as cm:
-            ccv.ccv()
-            print(cm)
-        self.assertEqual(cm.exception.code, 0)
 
     def test_ccv_valid_clirunner(self):
         runner = CliRunner()
