@@ -8,15 +8,11 @@ import requests as rq
 )
 def ccv(filename):
     file = open_file(filename)
-    if file:
-        result = run_request(file)
-        flag = check_valid(result)
-        if flag:
-            print(result)
-            exit()
-        exit(flag)
-    else:
-        exit(1)
+    result = run_request(file)
+    flag = check_valid(result)
+    if flag:
+        print(result)
+    exit(flag)
 
 
 def check_valid(result):
@@ -58,7 +54,7 @@ def open_file(filename):
         return file
     except FileNotFoundError:
         print("Configuration file not found.")
-        return "0"
+        exit(1)
 
 
 def run_request(file):

@@ -45,9 +45,9 @@ class CcvTest(unittest.TestCase):
 
     def test_open_file_wrong_filename(self):
         wrong_filename = "wrong_codecov.yml"
-        answer = "0"
-        received = ccv.open_file(wrong_filename)
-        self.assertEqual(answer, received)
+        with self.assertRaises(SystemExit) as cm:
+            received = ccv.open_file(wrong_filename)
+        self.assertEqual(cm.exception.code, 1)
 
     def test_open_file_valid_filename(self):
         right_filename = "codecov.yml"
