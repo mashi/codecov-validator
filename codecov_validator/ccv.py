@@ -9,32 +9,24 @@ import requests as rq
 def ccv(filename):
     file = open_file(filename)
     result = run_request(file)
-    flag = check_valid(result)
-    if flag:
-        print(result)
-    exit(flag)
+    check_valid(result)
 
 
 def check_valid(result):
     """
     Check if the message contains the "Valid!" string
     from the request call.
+    The exit(1) is used to indicate an error in the pre-commit.
 
     Args:
         result (str): message to be analyzed.
-
-    Returns:
-        int: The output is 1 to indicate an error so
-        exit(1) is called and indicates error in the pre-commit.
-        Returns 0 when "Valid!" is presented.
     """
     if "Valid!" in result:
         print("Valid!")
-        flag = 0
+        exit(0)
     else:
         print(result)
-        flag = 1
-    return flag
+        exit(1)
 
 
 def open_file(filename):

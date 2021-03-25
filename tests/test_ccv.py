@@ -56,11 +56,17 @@ class CcvTest(unittest.TestCase):
 
     def test_check_valid_valid_input(self):
         valid_input = "Valid!"
-        self.assertEqual(0, ccv.check_valid(valid_input))
+        with self.assertRaises(SystemExit) as cm:
+            ccv.check_valid(valid_input)
+        self.assertEqual(cm.exception.code, 0)
+        self.assertNotEqual(cm.exception.code, 1)
 
     def test_check_valid_invalid_input(self):
         invalid_input = "Invalid!"
-        self.assertEqual(1, ccv.check_valid(invalid_input))
+        with self.assertRaises(SystemExit) as cm:
+            ccv.check_valid(invalid_input)
+        self.assertEqual(cm.exception.code, 1)
+        self.assertNotEqual(cm.exception.code, 0)
 
     def test_ccv_valid_clirunner(self):
         runner = CliRunner()
