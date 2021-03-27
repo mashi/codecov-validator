@@ -1,5 +1,5 @@
 import click
-import requests as rq
+import requests
 
 
 @click.command()
@@ -60,13 +60,13 @@ def run_request(file):
         str: Result of the request.
     """
     try:
-        received = rq.post("https://codecov.io/validate", data=file)
+        received = requests.post("https://codecov.io/validate", data=file)
     except (
-        rq.ConnectTimeout,
-        rq.HTTPError,
-        rq.ReadTimeout,
-        rq.Timeout,
-        rq.ConnectionError,
+        requests.exceptions.ConnectTimeout,
+        requests.exceptions.HTTPError,
+        requests.exceptions.ReadTimeout,
+        requests.exceptions.Timeout,
+        requests.exceptions.ConnectionError,
     ):
         print("Failed to establish connection. Check your internet.")
         exit(1)

@@ -1,5 +1,7 @@
 import unittest
+from unittest.mock import patch
 
+import requests
 from click.testing import CliRunner
 
 from codecov_validator import ccv
@@ -32,6 +34,26 @@ codecov:
 class CcvTest(unittest.TestCase):
     def test_passing(self):
         self.assertEqual(1, 1)
+
+    @patch("requests.post")
+    def test_run_request_post_exception(self, post_mock):
+        # the post commmand is tested for a list of different exceptions
+        except_list = [
+            requests.exceptions.ConnectTimeout,
+            requests.exceptions.HTTPError,
+            requests.exceptions.ReadTimeout,
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+        ]
+        for except_element in except_list:
+            # subtests are used to distinguish iterations
+            with self.subTest(i=except_element):
+                post_mock.side_effect = except_element
+                with self.assertRaises(SystemExit) as cm:
+                    ccv.run_request(valid_file)
+                # check if the exit(1) was called
+                self.assertEqual(cm.exception.code, 1)
+                self.assertNotEqual(cm.exception.code, 0)
 
     def test_run_request_valid_file(self):
         received = ccv.run_request(valid_file)
