@@ -2,9 +2,21 @@
 version: 2.1
 
 jobs:
+
+  packages:
+    docker:
+      - image: python:3.8-buster
+    steps:
+      - checkout
+      - run:
+          name: tests
+          command: |
+            pip install wheel
+            pip install -r requirements-twine.txt
+
   test:
     docker:
-      - image: python:3.9-buster
+      - image: python:3.8-buster
     steps:
       # adicionar o token do codecov em uma environment variable do circleci chamada de CODECOV_TOKEN
       - checkout
@@ -53,6 +65,7 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
+      - packages
       - test:
           filters: # required since `deploy` has tag filters AND requires `test`
             tags:
