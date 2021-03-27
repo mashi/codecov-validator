@@ -46,7 +46,7 @@ jobs:
       - run:
           name: pypi upload
           command: |
-              pip install twine
+              pip install -r requirements-twine.txt
               python -m twine upload -u $PYPI_USER -p $PYPI_TOKEN dist/*
 
 # Orchestrate our job run sequence

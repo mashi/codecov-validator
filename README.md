@@ -20,7 +20,7 @@ The recommended use is to add in the `.pre-commit-config.yaml` file
     - id: ccv
 ```
 
-In this way, the `codecov` file is checked before `commit` and prevents the user
+In this way, the `codecov.yml` file is checked before `commit` and prevents the user
 from including invalid files in the version control.
 
 
