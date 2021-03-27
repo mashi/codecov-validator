@@ -7,8 +7,11 @@
 # Description
 Validates the `codecov.yml` configuration file.
 
-This code is simply the `curl` command described in the [codecov documentation](https://docs.codecov.io/docs/codecov-yaml)
+This package is simply the `curl` command described in the [codecov documentation](https://docs.codecov.io/docs/codecov-yaml)
 converted to python.
+
+This package was inspired by [gitlab-lint](https://pypi.org/project/gitlab-lint/), package that checks `.gitlab-ci.yml`
+configuration file.
 
 
 ## Usage
