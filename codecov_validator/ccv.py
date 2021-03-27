@@ -1,6 +1,10 @@
 import click
 import requests
 
+# The exit(1) is used to indicate error in pre-commit
+NOT_OK = 1
+OK = 0
+
 
 @click.command()
 @click.option(
@@ -16,17 +20,16 @@ def check_valid(result):
     """
     Check if the message contains the "Valid!" string
     from the request call.
-    The exit(1) is used to indicate an error in the pre-commit.
 
     Args:
         result (str): message to be analyzed.
     """
     if "Valid!" in result:
         print("Valid!")
-        exit(0)
+        exit(OK)
     else:
         print(result)
-        exit(1)
+        exit(NOT_OK)
 
 
 def open_file(filename):
@@ -46,7 +49,7 @@ def open_file(filename):
         return file
     except FileNotFoundError:
         print("Configuration file not found.")
-        exit(1)
+        exit(NOT_OK)
 
 
 def run_request(file):
@@ -69,7 +72,7 @@ def run_request(file):
         requests.exceptions.ConnectionError,
     ):
         print("Failed to establish connection. Check your internet.")
-        exit(1)
+        exit(NOT_OK)
     message = received.content.decode("utf-8")
     return message
 

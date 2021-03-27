@@ -5,6 +5,7 @@ import requests
 from click.testing import CliRunner
 
 from codecov_validator import ccv
+from codecov_validator.ccv import NOT_OK, OK
 
 invalid_file = """
 codecovs:
@@ -52,8 +53,8 @@ class CcvTest(unittest.TestCase):
                 with self.assertRaises(SystemExit) as cm:
                     ccv.run_request(valid_file)
                 # check if the exit(1) was called
-                self.assertEqual(cm.exception.code, 1)
-                self.assertNotEqual(cm.exception.code, 0)
+                self.assertEqual(cm.exception.code, NOT_OK)
+                self.assertNotEqual(cm.exception.code, OK)
 
     def test_run_request_valid_file(self):
         received = ccv.run_request(valid_file)
@@ -67,7 +68,7 @@ class CcvTest(unittest.TestCase):
         invalid_filename = "invalid_codecov.yml"
         with self.assertRaises(SystemExit) as cm:
             ccv.open_file(invalid_filename)
-        self.assertEqual(cm.exception.code, 1)
+        self.assertEqual(cm.exception.code, NOT_OK)
 
     def test_open_file_valid_filename(self):
         right_filename = "codecov.yml"
@@ -78,20 +79,20 @@ class CcvTest(unittest.TestCase):
         valid_input = "Valid!"
         with self.assertRaises(SystemExit) as cm:
             ccv.check_valid(valid_input)
-        self.assertEqual(cm.exception.code, 0)
-        self.assertNotEqual(cm.exception.code, 1)
+        self.assertEqual(cm.exception.code, OK)
+        self.assertNotEqual(cm.exception.code, NOT_OK)
 
     def test_check_valid_invalid_input(self):
         invalid_input = "Invalid!"
         with self.assertRaises(SystemExit) as cm:
             ccv.check_valid(invalid_input)
-        self.assertEqual(cm.exception.code, 1)
-        self.assertNotEqual(cm.exception.code, 0)
+        self.assertEqual(cm.exception.code, NOT_OK)
+        self.assertNotEqual(cm.exception.code, OK)
 
     def test_ccv_valid_clirunner(self):
         runner = CliRunner()
         result = runner.invoke(ccv.ccv)
-        self.assertEqual(result.exit_code, 0)
+        self.assertEqual(result.exit_code, OK)
 
 
 if __name__ == "__main__":
