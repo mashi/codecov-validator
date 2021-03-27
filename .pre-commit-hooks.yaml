@@ -4,3 +4,4 @@
     entry: ccv
     language: python
     types: [yaml]
+    pass_filenames: false
