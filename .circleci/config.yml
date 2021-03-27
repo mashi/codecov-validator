@@ -3,13 +3,13 @@ version: 2.1
 
 jobs:
 
-  packages:
+  twine-package:
     docker:
       - image: python:3.8-buster
     steps:
       - checkout
       - run:
-          name: tests
+          name: twine-package
           command: |
             pip install wheel
             pip install -r requirements-twine.txt
@@ -65,7 +65,7 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
-      - packages
+      - twine-package
       - test:
           filters: # required since `deploy` has tag filters AND requires `test`
             tags:
