@@ -18,6 +18,7 @@ The recommended use is to add in the `.pre-commit-config.yaml` file
   rev: v0.0.1  # replace by any tag version available
   hooks:
     - id: ccv
+      # args: [--filename, .codecov.yml]  # example with arguments
 ```
 
 In this way, the `codecov.yml` file is checked before `commit` and prevents the user
