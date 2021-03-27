@@ -2,6 +2,21 @@
 version: 2.1
 
 jobs:
+  test:
+    docker:
+      - image: python:3.9-buster
+    steps:
+      # adicionar o token do codecov em uma environment variable do circleci chamada de CODECOV_TOKEN
+      - checkout
+      - run:
+          name: tests
+          command: |
+            pip install wheel
+            pip install -r requirements.txt
+            python -m unittest discover -b
+            coverage run -m unittest discover -b
+            bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
+
   build:
     docker:
       - image: python:3.8-buster
@@ -38,12 +53,17 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
+      - test:
+          filters: # required since `deploy` has tag filters AND requires `test`
+            tags:
+              only: /.*/
       - build:
           filters: # required since `deploy` has tag filters AND requires `build`
             tags:
               only: /.*/
       - deploy:
           requires:
+          - test
           - build
           filters:
             # execute only when tags are created
