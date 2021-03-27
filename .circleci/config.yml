@@ -37,6 +37,8 @@ jobs:
       - run:
           name: build package
           command: |
+              pip install wheel
+              pip install -r requirements.txt
               python -m build
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:
