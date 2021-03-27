@@ -15,7 +15,7 @@ converted to python.
 The recommended use is to add in the `.pre-commit-config.yaml` file
 ```
 - repo: https://github.com/mashi/codecov-validator
-  rev: v0.0.1  # replace by any tag version available
+  rev: v1.0.0  # replace by any tag version >= 1.0.0 available
   hooks:
     - id: ccv
       # args: [--filename, .codecov.yml]  # example with arguments
