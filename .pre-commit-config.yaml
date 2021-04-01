@@ -20,6 +20,11 @@ repos:
       - id: docformatter
         args: [--wrap-summaries, "79", --in-place]
 
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.0
+    hooks:
+    - id: bandit
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0  # Use the ref you want to point at
     hooks:
