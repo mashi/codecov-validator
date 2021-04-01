@@ -13,6 +13,13 @@ repos:
       - id: isort
         args: ["--profile", "black", "--filter-files"]
 
+  - repo: https://github.com/myint/docformatter
+    rev: v1.3.1
+    hooks:
+      # # line length compatible with black and flake8
+      - id: docformatter
+        args: [--wrap-summaries, "79", --in-place]
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0  # Use the ref you want to point at
     hooks:

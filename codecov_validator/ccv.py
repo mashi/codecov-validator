@@ -1,3 +1,4 @@
+"""Validates the codecov.yml configuration file."""
 import click
 import requests
 
@@ -11,15 +12,18 @@ OK = 0
     "--filename", default="codecov.yml", help="Codecov configuration file."
 )
 def ccv(filename):
+    """Open the codecov configuration and check if it is valid.
+
+    Args:
+        filename (str): name of the configuration file.
+    """
     file = open_file(filename)
     result = run_request(file)
     check_valid(result)
 
 
 def check_valid(result):
-    """
-    Check if the message contains the "Valid!" string
-    from the request call.
+    """Check if the message contains the "Valid!" string from the request call.
 
     Args:
         result (str): message to be analyzed.
@@ -33,8 +37,7 @@ def check_valid(result):
 
 
 def open_file(filename):
-    """
-    Tries to open the configuration file.
+    """Tries to open the configuration file.
 
     Args:
         filename (str): name of the configuration file.
@@ -53,8 +56,7 @@ def open_file(filename):
 
 
 def run_request(file):
-    """
-    Send the configuration to the codecov site.
+    """Send the configuration to the codecov site.
 
     Args:
         file (string): contents of the configuration file.
