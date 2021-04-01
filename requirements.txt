@@ -1,4 +1,5 @@
 appdirs==1.4.4
+bandit==1.7.0
 build==0.3.1.post1
 certifi==2020.12.5
 cfgv==3.2.0
@@ -6,13 +7,17 @@ chardet==4.0.0
 click==7.1.2
 coverage==5.5
 distlib==0.3.1
+docformatter==1.4
 filelock==3.0.12
 flake8==3.9.0
+gitdb==4.0.7
+GitPython==3.1.14
 identify==2.2.2
 idna==2.10
 mccabe==0.6.1
 nodeenv==1.5.0
 packaging==20.9
+pbr==5.5.1
 pep517==0.10.0
 pre-commit==2.11.1
 pycodestyle==2.7.0
@@ -21,6 +26,9 @@ pyparsing==2.4.7
 PyYAML==5.4.1
 requests==2.25.1
 six==1.15.0
+smmap==4.0.0
+stevedore==3.3.0
 toml==0.10.2
+untokenize==0.1.1
 urllib3==1.26.4
 virtualenv==20.4.3
