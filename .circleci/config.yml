@@ -3,6 +3,15 @@ version: 2.1
 
 jobs:
 
+  formatter:
+    docker:
+      - image: python:3.8-buster
+      - run:
+        name: black-formatter
+        command: |
+          pip install black
+          black --check codecov_validator/
+
   twine-package:
     docker:
       - image: python:3.8-buster
@@ -67,6 +76,7 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
+      - formatter
       - twine-package
       - test:
           filters: # required since `deploy` has tag filters AND requires `test`
