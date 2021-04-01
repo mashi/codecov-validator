@@ -6,6 +6,8 @@ jobs:
   formatter:
     docker:
       - image: python:3.8-buster
+    steps:
+      - checkout
       - run:
           name: black-formatter
           command: |
