@@ -7,10 +7,10 @@ jobs:
     docker:
       - image: python:3.8-buster
       - run:
-        name: black-formatter
-        command: |
-          pip install black
-          black --check codecov_validator/
+          name: black-formatter
+          command: |
+            pip install black
+            black --check codecov_validator/
 
   twine-package:
     docker:
