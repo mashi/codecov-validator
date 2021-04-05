@@ -26,13 +26,9 @@ jobs:
             pip install -r requirements-twine.txt
 
   test:
-    parameters:
-      image:
-        type: string
     docker:
-      - image: << parameters.image >>
+      - image: python:3.8-buster
     steps:
-      # adicionar o token do codecov em uma environment variable do circleci chamada de CODECOV_TOKEN
       - checkout
       - run:
           name: tests
@@ -42,6 +38,22 @@ jobs:
             python -m unittest discover -b
             coverage run -m unittest discover -b
             bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
+
+  test-build-multiple-versions:
+    parameters:
+      image:
+        type: string
+    docker:
+      - image: << parameters.image >>
+    steps:
+      - checkout
+      - run:
+          name: tests
+          command: |
+            pip install wheel
+            pip install -r requirements.txt
+            python -m unittest discover -b
+            python -m build
 
   build:
     docker:
@@ -83,10 +95,11 @@ workflows:
     jobs:
       - formatter
       - twine-package
-      - test:
+      - test-build-multiple-versions:
           matrix:
             parameters:
-              image: ["python:3.8-buster", "python:3.9-buster"]
+              image: ["python:3.6-buster", "python:3.7-buster", "python:3.8-buster", "python:3.9-buster"]
+      - test:
           filters: # required since `deploy` has tag filters AND requires `test`
             tags:
               only: /.*/
