@@ -5,7 +5,7 @@ jobs:
 
   formatter:
     docker:
-      - image: python:3.8-buster
+      - image: python:3.9-buster
     steps:
       - checkout
       - run:
@@ -16,7 +16,7 @@ jobs:
 
   twine-package:
     docker:
-      - image: python:3.8-buster
+      - image: python:3.9-buster
     steps:
       - checkout
       - run:
@@ -27,7 +27,7 @@ jobs:
 
   test:
     docker:
-      - image: python:3.8-buster
+      - image: python:3.9-buster
     steps:
       - checkout
       - run:
@@ -57,7 +57,7 @@ jobs:
 
   build:
     docker:
-      - image: python:3.8-buster
+      - image: python:3.9-buster
     steps:
       - checkout
       - run:
@@ -77,7 +77,7 @@ jobs:
 
   deploy:
     docker:
-      - image: python:3.8-buster
+      - image: python:3.9-buster
     steps:
       - checkout
       - attach_workspace:
