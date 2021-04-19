@@ -14,17 +14,6 @@ jobs:
             pip install black
             black --check codecov_validator/
 
-  twine-package:
-    docker:
-      - image: python:3.9-buster
-    steps:
-      - checkout
-      - run:
-          name: twine-package
-          command: |
-            pip install wheel
-            pip install -r requirements-twine.txt
-
   test:
     docker:
       - image: python:3.9-buster
@@ -86,7 +75,7 @@ jobs:
       - run:
           name: pypi upload
           command: |
-              pip install -r requirements-twine.txt
+              pip install -r requirements.txt
               python -m twine upload -u $PYPI_USER -p $PYPI_TOKEN dist/*
 
 # Orchestrate our job run sequence
@@ -94,7 +83,6 @@ workflows:
   build_and_deploy:
     jobs:
       - formatter
-      - twine-package
       - test-build-multiple-versions:
           matrix:
             parameters:
