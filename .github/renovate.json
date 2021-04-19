@@ -6,9 +6,6 @@
   "prConcurrentLimit": 10,
   "automerge": true,
   "automergeType": "branch",
-  "packageRules": [
-    {
-      "matchPackageNames": ["requirements-twine.txt"]
-    }
-  ]
+  "timezone": "America/Los_Angeles",
+  "schedule": ["after 10pm", "before 5:00am"]
 }
