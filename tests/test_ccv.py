@@ -62,7 +62,7 @@ class CcvTest(unittest.TestCase):
 
     def test_run_request_invalid_file(self):
         received = ccv.run_request(invalid_file)
-        self.assertIn("Wrong key", received)
+        self.assertIn("Error at", received)
 
     def test_open_file_invalid_filename(self):
         invalid_filename = "invalid_codecov.yml"
