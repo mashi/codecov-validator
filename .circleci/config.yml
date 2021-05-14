@@ -105,3 +105,16 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - test-build-multiple-versions:
+          matrix:
+            parameters:
+              image: ["python:3.6-buster", "python:3.7-buster", "python:3.8-buster", "python:3.9-buster"]
