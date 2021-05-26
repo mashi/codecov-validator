@@ -44,7 +44,7 @@ six==1.16.0
 smmap==4.0.0
 stevedore==3.3.0
 toml==0.10.2
-tqdm==4.60.0
+tqdm==4.61.0
 twine==3.4.1
 untokenize==0.1.1
 urllib3==1.26.4
