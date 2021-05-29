@@ -2,7 +2,7 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/mashi/codecov-validator.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/mashi/codecov-validator/context:python)
 [![codecov](https://codecov.io/gh/mashi/codecov-validator/branch/main/graph/badge.svg?token=WBOQOGFC51)](https://codecov.io/gh/mashi/codecov-validator)
-[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield)](https://app.circleci.com/pipelines/github/mashi/codecov-validator?branch=main)
+[![github-actions](https://github.com/mashi/codecov-validator/actions/workflows/python.yml/badge.svg)](https://github.com/mashi/codecov-validator/actions)
 
 
 # Description
