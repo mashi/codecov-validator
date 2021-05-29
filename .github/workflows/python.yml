@@ -45,3 +45,17 @@ jobs:
         run: |
           python -m unittest discover -b
           python -m build
+
+  coverage-upload:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: code formatter
+        run: |
+          pip install wheel
+          pip install -r requirements.txt
+          coverage run -m unittest discover -b
+          bash <(curl -s https://codecov.io/bash)
