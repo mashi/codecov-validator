@@ -1,0 +1,47 @@
+
+name: python
+
+# workflow triggers
+on:
+  push:
+    branches:
+      - '**' # every branch
+    tags:
+      - '**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  formatter:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: code formatter
+        run: |
+          pip install wheel
+          pip install black
+          black --check codecov_validator/
+          black --check tests/
+
+  test-and-build:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        python: [3.6, 3.7, 3.8, 3.9]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - name: install packages
+        run: |
+          pip install wheel
+          pip install -r requirements.txt
+      - name: unittest
+        run: |
+          python -m unittest discover
+          python -m build
