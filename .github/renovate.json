@@ -6,6 +6,5 @@
   "prConcurrentLimit": 10,
   "automerge": true,
   "automergeType": "branch",
-  "timezone": "America/Los_Angeles",
-  "schedule": ["after 10pm", "before 5:00am"]
+  "schedule": ["after 10pm every weekend", "before 5:00am every weekend"]
 }
