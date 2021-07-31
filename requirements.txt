@@ -48,6 +48,6 @@ tqdm==4.62.0
 twine==3.4.2
 untokenize==0.1.1
 urllib3==1.26.6
-virtualenv==20.6.0
+virtualenv==20.7.0
 webencodings==0.5.1
 zipp==3.5.0
