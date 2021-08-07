@@ -17,7 +17,7 @@ filelock==3.0.12
 flake8==3.9.2
 gitdb==4.0.7
 GitPython==3.1.18
-identify==2.2.11
+identify==2.2.13
 idna==2.10
 importlib-metadata==4.6.3
 jeepney==0.7.1
