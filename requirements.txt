@@ -21,7 +21,7 @@ identify==2.2.14
 idna==2.10
 importlib-metadata==4.8.1
 jeepney==0.7.1
-keyring==23.1.0
+keyring==23.2.0
 mccabe==0.6.1
 nodeenv==1.6.0
 packaging==21.0
