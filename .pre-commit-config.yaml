@@ -3,7 +3,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/psf/black
-    rev: 20.8b1 # Replace by any tag/version: https://github.com/psf/black/tags
+    rev: 21.9b0
     hooks:
       - id: black
 
@@ -26,7 +26,7 @@ repos:
     - id: bandit
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1  # Use the ref you want to point at
+    rev: v4.0.1
     hooks:
       # Prevent giant files from being committed.
       - id: check-added-large-files
