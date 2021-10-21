@@ -12,8 +12,8 @@
       "groupName": "linter"
     }
   ],
-  "branchConcurrentLimit": 10,
-  "prConcurrentLimit": 10,
+  "branchConcurrentLimit": 50,
+  "prConcurrentLimit": 50,
   "automerge": true,
   "automergeType": "branch",
   "schedule": [
