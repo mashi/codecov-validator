@@ -16,5 +16,7 @@
   "prConcurrentLimit": 10,
   "automerge": true,
   "automergeType": "branch",
-  "schedule": ["after 10pm every weekend", "before 5:00am every weekend"]
+  "schedule": [
+    "on the last day of the month"
+  ]
 }
