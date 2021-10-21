@@ -5,9 +5,18 @@
   "github-actions": {
     "fileMatch": ["renovate.json"]
   },
-  "branchConcurrentLimit": 10,
-  "prConcurrentLimit": 10,
+"packageRules": [
+    {
+      "matchPackagePatterns": [ "pycodestyle", "flake8", "pyflakes" ],
+      "separateMajorMinor": false,
+      "groupName": "linter"
+    }
+  ],
+  "branchConcurrentLimit": 50,
+  "prConcurrentLimit": 50,
   "automerge": true,
   "automergeType": "branch",
-  "schedule": ["after 10pm every weekend", "before 5:00am every weekend"]
+  "schedule": [
+    "on the last day of the month"
+  ]
 }
