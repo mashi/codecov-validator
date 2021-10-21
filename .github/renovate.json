@@ -5,6 +5,13 @@
   "github-actions": {
     "fileMatch": ["renovate.json"]
   },
+"packageRules": [
+    {
+      "matchPackagePatterns": [ "pycodestyle", "flake8", "pyflakes" ],
+      "separateMajorMinor": false,
+      "groupName": "linter"
+    }
+  ],
   "branchConcurrentLimit": 10,
   "prConcurrentLimit": 10,
   "automerge": true,
