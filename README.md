@@ -48,8 +48,8 @@ The development uses:
 for example, code formatting, *before* files are added to the version control.
 Check the `.pre-commit-config.yaml` for the complete list of verifications.
 
-1. Here, CI/CD methods are implemented using github actions configured inside
-the .github folder. The CI process is executed after code changes and includes
+1. Here, CI/CD methods are implemented using GitHub actions configured inside
+the `.github` folder. The CI process is executed after code changes and includes
     1. code formatting check,
     1. running tests for different python versions,
     1. and package build check.
