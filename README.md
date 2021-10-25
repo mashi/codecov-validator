@@ -8,11 +8,12 @@
 # Description
 Validates the `codecov.yml` configuration file.
 
-This package is simply the `curl` command described in the [codecov documentation](https://docs.codecov.io/docs/codecov-yaml)
-converted to python.
+This python package executes the equivalent of the `curl` command described in the
+[codecov documentation](https://docs.codecov.io/docs/codecov-yaml), and it can be
+integrated in the [pre-commit](https://github.com/pre-commit/pre-commit).
 
-This package was inspired by [gitlab-lint](https://pypi.org/project/gitlab-lint/), package that checks `.gitlab-ci.yml`
-configuration file.
+This package was inspired by [gitlab-lint](https://pypi.org/project/gitlab-lint/),
+package that checks `.gitlab-ci.yml` configuration file.
 
 
 ## Usage
@@ -25,12 +26,13 @@ The recommended use is to add in the `.pre-commit-config.yaml` file
       # args: [--filename, .codecov.yml]  # example with arguments
 ```
 
-In this way, the `codecov.yml` file is checked before `commit` and prevents the user
-from including invalid files in the version control.
+In this way, the `codecov.yml` file is checked before `commit` and prevents the
+user from including invalid files in the version control.
 
 
 ## Instructions (Development)
-Create a virtual environment and install the required packages with
+The code is developed inside a virtual environment with the packages from the
+`requirements.txt` file:
 ```
 python3 -m venv .venv
 source .venv/bin/activate
@@ -38,3 +40,26 @@ pip install wheel
 pip install -r requirements.txt
 pre-commit install
 ```
+
+The development uses:
+1. Version control with git to track changes.
+
+1. A pre-commit to maintain the quality of the code. It helps identify issues,
+for example, code formatting, *before* files are added to the version control.
+Check the `.pre-commit-config.yaml` for the complete list of verifications.
+
+1. Here, CI/CD methods are implemented using GitHub actions configured inside
+the `.github` folder. The CI process is executed after code changes and includes
+    1. code formatting check,
+    1. running tests for different python versions,
+    1. and package build check.
+
+    The CD process is triggered by new tags in this repository:
+    1. tests are executed,
+    1. the package is built,
+    1. and the new release is upload to pypi.
+
+1. For maintenance:
+    1. the renovatebot is configured to keep packages up to date.
+    1. Scheduled tests are configured to periodically perform tests
+    and builds.
