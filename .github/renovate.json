@@ -12,6 +12,7 @@
       "groupName": "linter"
     }
   ],
+  "dependencyDashboard": true,
   "branchConcurrentLimit": 50,
   "prConcurrentLimit": 50,
   "automerge": true,
