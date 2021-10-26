@@ -11,6 +11,8 @@ Welcome to codecov-validator's documentation!
    :caption: Contents:
 
 
+   autodoc_ccv
+
 
 Indices and tables
 ==================
