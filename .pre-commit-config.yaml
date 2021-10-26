@@ -73,6 +73,12 @@ repos:
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
 
+  - repo: https://github.com/myint/docformatter
+    rev: v1.4
+    hooks:
+      - id: docformatter
+        args: [--wrap-summaries, "79", --in-place]
+
   - repo: https://github.com/mashi/codecov-validator
     rev: v1.0.0
     hooks:
