@@ -3,6 +3,7 @@
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/mashi/codecov-validator.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/mashi/codecov-validator/context:python)
 [![codecov](https://codecov.io/gh/mashi/codecov-validator/branch/main/graph/badge.svg?token=WBOQOGFC51)](https://codecov.io/gh/mashi/codecov-validator)
 [![github-actions](https://github.com/mashi/codecov-validator/actions/workflows/python.yml/badge.svg)](https://github.com/mashi/codecov-validator/actions)
+[![Documentation Status](https://readthedocs.org/projects/codecov-validator/badge/?version=latest)](https://codecov-validator.readthedocs.io/en/latest/?badge=latest)
 
 
 # Description
@@ -30,23 +31,16 @@ In this way, the `codecov.yml` file is checked before `commit` and prevents the
 user from including invalid files in the version control.
 
 
-## Instructions (Development)
-The code is developed inside a virtual environment with the packages from the
-`requirements.txt` file:
-```
-python3 -m venv .venv
-source .venv/bin/activate
-pip install wheel
-pip install -r requirements.txt
-pre-commit install
-```
-
+## Software and Tools
 The development uses:
 1. Version control with git to track changes.
 
 1. A pre-commit to maintain the quality of the code. It helps identify issues,
 for example, code formatting, *before* files are added to the version control.
 Check the `.pre-commit-config.yaml` for the complete list of verifications.
+
+1. The code documentation is generated automatically from the docstrings and
+exported to readthedocs (click on docs the badge above).
 
 1. Here, CI/CD methods are implemented using GitHub actions configured inside
 the `.github` folder. The CI process is executed after code changes and includes
@@ -63,3 +57,32 @@ the `.github` folder. The CI process is executed after code changes and includes
     1. the renovatebot is configured to keep packages up to date.
     1. Scheduled tests are configured to periodically perform tests
     and builds.
+
+
+## Instructions (Development)
+The code is developed inside a virtual environment with the packages from the
+`requirements.txt` file:
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install wheel
+pip install -r requirements.txt
+pre-commit install
+```
+
+
+To execute tests:
+```
+python -m unittests discover -b
+```
+
+
+To generate the documentation, install the packages and call sphinx:
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install wheel
+pip install -r docs/requirements-doc.txt
+sphinx-build -E -b html docs/source docs/_build
+```
+After the end of the build process, open the `docs/_build/index.html` file.

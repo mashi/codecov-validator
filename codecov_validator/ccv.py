@@ -14,8 +14,10 @@ OK = 0
 def ccv(filename):
     """Open the codecov configuration and check if it is valid.
 
-    Args:
-        filename (str): name of the configuration file.
+    Parameters
+    ----------
+    filename : str
+        Name of the configuration file.
     """
     file = open_file(filename)
     result = run_request(file)
@@ -25,8 +27,10 @@ def ccv(filename):
 def check_valid(result):
     """Check if the message contains the "Valid!" string from the request call.
 
-    Args:
-        result (str): message to be analyzed.
+    Parameters
+    ----------
+    result : str
+        Message to be analyzed.
     """
     if "Valid!" in result:
         print("Valid!")
@@ -39,12 +43,16 @@ def check_valid(result):
 def open_file(filename):
     """Tries to open the configuration file.
 
-    Args:
-        filename (str): name of the configuration file.
+    Parameters
+    ----------
+    filename : str
+        Name of the configuration file.
 
-    Returns:
-        bytes: contents of the configuration file, or
-            the string zero.
+    Returns
+    -------
+    bytes
+        Contents of the configuration file, or the string
+        zero.
     """
     try:
         with open(filename, "rb") as myconfig:
@@ -58,11 +66,15 @@ def open_file(filename):
 def run_request(file):
     """Send the configuration to the codecov site.
 
-    Args:
-        file (string): contents of the configuration file.
+    Parameters
+    ----------
+    file : string
+        Contents of the configuration file.
 
-    Returns:
-        str: Result of the request.
+    Returns
+    -------
+    str
+        Result of the request.
     """
     try:
         received = requests.post("https://codecov.io/validate", data=file)
