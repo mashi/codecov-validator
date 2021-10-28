@@ -5,13 +5,16 @@
   "github-actions": {
     "fileMatch": ["renovate.json"]
   },
-"packageRules": [
+  "packageRules": [
     {
       "matchPackagePatterns": [ "pycodestyle", "flake8", "pyflakes" ],
       "separateMajorMinor": false,
       "groupName": "linter"
     }
   ],
+  "pip_requirements": {
+    "fileMatch": ["docs/requirements-doc", "requirements$"]
+  },
   "dependencyDashboard": true,
   "branchConcurrentLimit": 50,
   "prConcurrentLimit": 50,
