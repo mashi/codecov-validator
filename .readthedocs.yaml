@@ -17,5 +17,5 @@ python:
       path: .
     - requirements: docs/requirements-doc.txt
 
-  formats:
-    - pdf
+formats:
+  - pdf
