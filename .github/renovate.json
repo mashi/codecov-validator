@@ -5,13 +5,6 @@
   "github-actions": {
     "fileMatch": ["renovate.json"]
   },
-  "packageRules": [
-    {
-      "matchPackagePatterns": [ "pycodestyle", "flake8", "pyflakes" ],
-      "separateMajorMinor": false,
-      "groupName": "linter"
-    }
-  ],
   "pip_requirements": {
     "fileMatch": ["docs/requirements-doc", "requirements$"]
   },
