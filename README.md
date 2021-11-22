@@ -14,11 +14,11 @@ This python package executes the equivalent of the `curl` command described in t
 integrated in the [pre-commit](https://github.com/pre-commit/pre-commit).
 
 This package was inspired by [gitlab-lint](https://pypi.org/project/gitlab-lint/),
-package that checks `.gitlab-ci.yml` configuration file.
+a package that checks `.gitlab-ci.yml` configuration file.
 
 
 ## Usage
-The recommended use is to add in the `.pre-commit-config.yaml` file
+The recommended use is to add it in the `.pre-commit-config.yaml` file
 ```
 - repo: https://github.com/mashi/codecov-validator
   rev: v1.0.0  # replace by any tag version >= 1.0.0 available
@@ -40,7 +40,7 @@ for example, code formatting, *before* files are added to the version control.
 Check the `.pre-commit-config.yaml` for the complete list of verifications.
 
 1. The code documentation is generated automatically from the docstrings and
-exported to readthedocs (click on docs the badge above).
+exported to readthedocs (click on the *docs* the badge above).
 
 1. Here, CI/CD methods are implemented using GitHub actions configured inside
 the `.github` folder. The CI process is executed after code changes and includes
@@ -86,3 +86,9 @@ pip install -r docs/requirements-doc.txt
 sphinx-build -E -b html docs/source docs/_build
 ```
 After the end of the build process, open the `docs/_build/index.html` file.
+
+
+# Disclaimer
+This is an unofficial package, not endorsed by Codecov.
+It was written with the purpose of learning about python, how to build and
+maintain packages, and to explore programming tools.
