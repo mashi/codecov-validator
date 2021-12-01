@@ -3,6 +3,6 @@ build==0.7.0
 click==8.0.3
 coverage==6.1.1
 flake8==3.9.2
-pre-commit==2.15.0
+pre-commit==2.16.0
 requests==2.26.0
 twine==3.4.2
