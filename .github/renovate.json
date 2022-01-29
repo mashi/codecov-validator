@@ -5,6 +5,9 @@
   "github-actions": {
     "fileMatch": ["renovate.json"]
   },
+  "pre-commit": {
+    "enabled": true
+  },
   "pip_requirements": {
     "fileMatch": ["docs/requirements-doc", "requirements$"]
   },
