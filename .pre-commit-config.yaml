@@ -80,6 +80,6 @@ repos:
         args: [--wrap-summaries, "79", --in-place]
 
   - repo: https://github.com/mashi/codecov-validator
-    rev: v1.0.0
+    rev: 1.0.1
     hooks:
       - id: ccv
