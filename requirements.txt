@@ -2,7 +2,7 @@ black==23.12.1
 build==0.10.0
 click==8.1.7
 coverage==7.4.0
-flake8==5.0.4
+flake8==6.1.0
 pre-commit==2.21.0
 requests==2.31.0
 twine==4.0.2
