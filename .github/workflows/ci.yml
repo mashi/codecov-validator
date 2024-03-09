@@ -24,9 +24,9 @@ jobs:
       - name: code formatter
         run: |
           pip install wheel
-          pip install black
-          black --check codecov_validator/
-          black --check tests/
+          pip install ruff
+          ruff check codecov_validator/
+          ruff check tests/
 
   test-and-build:
     runs-on: ubuntu-22.04
