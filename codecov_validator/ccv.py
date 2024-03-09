@@ -1,4 +1,5 @@
 """Validates the codecov.yml configuration file."""
+
 import click
 import requests
 
@@ -8,9 +9,7 @@ OK = 0
 
 
 @click.command()
-@click.option(
-    "--filename", default="codecov.yml", help="Codecov configuration file."
-)
+@click.option("--filename", default="codecov.yml", help="Codecov configuration file.")
 def ccv(filename):
     """Open the codecov configuration and check if it is valid.
 
@@ -77,7 +76,7 @@ def run_request(file):
         Result of the request.
     """
     try:
-        received = requests.post("https://codecov.io/validate", data=file)
+        received = requests.post("https://codecov.io/validate", data=file, timeout=10)
     except (
         requests.exceptions.ConnectTimeout,
         requests.exceptions.HTTPError,
