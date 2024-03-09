@@ -77,7 +77,7 @@ def run_request(file):
         Result of the request.
     """
     try:
-        received = requests.post("https://codecov.io/validate", data=file)
+        received = requests.post("https://codecov.io/validate", data=file, timeout=10)
     except (
         requests.exceptions.ConnectTimeout,
         requests.exceptions.HTTPError,
