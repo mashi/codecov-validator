@@ -3,4 +3,4 @@ click==8.1.7
 coverage==7.5.3
 pre-commit==3.7.1
 requests==2.32.3
-twine==5.0.0
+twine==5.1.0
