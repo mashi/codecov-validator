@@ -1,6 +1,6 @@
 build==1.2.1
 click==8.1.7
 coverage==7.5.3
-pre-commit==3.7.0
+pre-commit==3.7.1
 requests==2.31.0
 twine==5.0.0
